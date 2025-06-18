@@ -1,8 +1,5 @@
-"use client";
-
 import React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import NavLink from "@/components/NavLink";
 
 const menu = [
   { url: "/", title: "Главная" },
@@ -10,18 +7,12 @@ const menu = [
 ];
 
 const Nav = () => {
-  const pathname = usePathname();
   return (
     <nav>
       <ul className="flex justify-between gap-x-4">
         {menu.map(({ url, title }) => (
           <li key={url}>
-            <Link
-              className={`${pathname === url ? "font-bold text-blue-600 underline" : ""}`}
-              href={url}
-            >
-              {title}
-            </Link>
+            <NavLink url={url} title={title} />
           </li>
         ))}
       </ul>
