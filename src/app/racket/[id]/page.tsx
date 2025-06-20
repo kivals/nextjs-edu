@@ -1,6 +1,6 @@
-import { rackets } from "@/data/mock";
-import { Racket } from "@/shared/types";
 import Image from "next/image";
+import { getRacketById } from "@/services/getRacketById";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -8,10 +8,14 @@ type Props = {
 
 export default async function RacketPage({ params }: Props) {
   const { id } = await params;
-  const racket = rackets.find((r: Racket) => r.id === Number(id));
+  const { data: racket, isError } = await getRacketById({ id });
+
+  if (isError) {
+    return "someError";
+  }
 
   if (!racket) {
-    return <div>Not found</div>;
+    return notFound();
   }
 
   return (

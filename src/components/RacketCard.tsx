@@ -1,11 +1,11 @@
 import Image from "next/image";
 import React from "react";
-import { Racket } from "@/shared/types";
-import Link from "next/link";
+import { Racket } from "@/shared/types/racket";
+import NextLink from "next/link";
 
 const RacketCard = ({ racket }: { racket: Racket }) => {
   return (
-    <Link href={`/rackets/${racket.id}`} className="block">
+    <NextLink href={`/racket/${racket.id}`} className="block">
       <article
         className="flex h-[400px] max-w-sm flex-col items-center rounded-lg border border-gray-400 p-4"
         key={racket.id}
@@ -21,7 +21,7 @@ const RacketCard = ({ racket }: { racket: Racket }) => {
         </div>
         <p className="mt-4 text-center text-sm text-gray-600">{racket.name}</p>
       </article>
-    </Link>
+    </NextLink>
   );
 };
 
