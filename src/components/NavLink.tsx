@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 
 type Props = {
@@ -12,12 +12,12 @@ const NavLink = ({ url, title }: Props) => {
   const pathname = usePathname();
 
   return (
-    <Link
+    <NextLink
       className={`${pathname === url ? "font-bold text-blue-600 underline" : ""}`}
       href={url}
     >
       {title}
-    </Link>
+    </NextLink>
   );
 };
 
