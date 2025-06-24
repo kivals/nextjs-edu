@@ -9,10 +9,8 @@ interface Props {
   fetcherParams?: { limit: number };
 }
 
-const RacketsContainer = async ({ fetcher, title, fetcherParams }: Props) => {
-  const { data: rackets, isError } = fetcherParams
-    ? await fetcher(fetcherParams)
-    : await fetcher();
+const RacketsContainer = async ({ fetcher, title, fetcherParams = undefined }: Props) => {
+  const { data: rackets, isError } = await fetcher(fetcherParams)
 
   if (isError) {
     return "someError";
