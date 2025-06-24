@@ -1,6 +1,26 @@
 import Image from "next/image";
 import { getRacketById } from "@/services/getRacketById";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
+import { getMetaRacketById } from "@/services/getMetaRacketById";
+
+export const generateMetadata = async ({
+  params,
+}: Props): Promise<Metadata> => {
+  const { id } = await params;
+
+  const result = await getMetaRacketById({ id });
+
+  if (result.isError || !result.data) {
+    return {
+      title: "tennis racket",
+    };
+  }
+
+  return {
+    title: result.data.name,
+  };
+};
 
 type Props = {
   params: Promise<{ id: string }>;

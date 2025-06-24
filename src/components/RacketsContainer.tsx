@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import RacketCard from "@/components/RacketCard";
 import { Response } from "@/shared/types/response";
 import { Racket } from "@/shared/types/racket";
+import { throws } from "node:assert";
 
 interface Props {
   title?: string;
@@ -9,11 +10,15 @@ interface Props {
   fetcherParams?: { limit: number };
 }
 
-const RacketsContainer = async ({ fetcher, title, fetcherParams = undefined }: Props) => {
-  const { data: rackets, isError } = await fetcher(fetcherParams)
+const RacketsContainer = async ({
+  fetcher,
+  title,
+  fetcherParams = undefined,
+}: Props) => {
+  const { data: rackets, isError } = await fetcher(fetcherParams);
 
   if (isError) {
-    return "someError";
+    throw new Error("some error");
   }
 
   if (!rackets) {

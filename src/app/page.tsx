@@ -3,6 +3,12 @@ import { Suspense } from "react";
 import { getTop10Rackets } from "@/services/getTop10Rackets";
 import ShowAllLink from "@/components/ShowAllLink";
 import RacketsContainer from "@/components/RacketsContainer";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Tennis store",
+  description: "tennis rackets",
+};
 
 export default async function Home() {
   return (
